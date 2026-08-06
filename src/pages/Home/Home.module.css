@@ -1,0 +1,201 @@
+.home {
+  position: relative;
+  min-height: calc(100vh - 145px);
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  padding: 2rem;
+  padding-bottom: 4rem;
+
+  overflow: hidden;
+
+  background-image: url("../../assets/hero-banner-desktop.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(rgba(13, 17, 23, 0.15), rgba(13, 17, 23, 0.45));
+
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 700px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.tag {
+  margin-bottom: 1.2rem;
+
+  color: var(--text);
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.title {
+  margin-bottom: 1rem;
+
+  color: var(--text);
+
+  font-size: clamp(3rem, 7vw, 5rem);
+  line-height: 1.1;
+}
+
+.title span {
+  color: var(--primary);
+  text-shadow: var(--glow);
+}
+
+.description {
+  max-width: 600px;
+
+  margin-bottom: 2.5rem;
+
+  color: #d0d7de;
+
+  font-size: 1.15rem;
+  line-height: 1.8;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.buttonGroup {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  padding: 1rem 2.5rem;
+
+  border-radius: var(--radius-md);
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  transition: var(--transition);
+}
+
+.primaryBtn {
+  background: var(--primary);
+  color: var(--bg);
+
+  border: 2px solid var(--primary);
+}
+
+.primaryBtn:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 0 12px rgba(0, 245, 255, 0.45),
+    0 0 28px rgba(0, 245, 255, 0.25);
+}
+
+.secondaryBtn {
+  background: rgba(22, 27, 34, 0.35);
+  backdrop-filter: blur(8px);
+
+  color: var(--text);
+
+  border: 2px solid var(--text);
+}
+
+.secondaryBtn:hover {
+  background: var(--text);
+  color: var(--bg);
+
+  transform: translateY(-3px);
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 768px) {
+  .home {
+    padding-bottom: 3rem;
+  }
+
+  .content {
+    max-width: 90%;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 230px;
+    text-align: center;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 480px) {
+  .home {
+    background-image: url("../../assets/banner-phone.png");
+
+    background-position: center top;
+
+    padding: 1.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .description {
+    margin-bottom: 2rem;
+
+    font-size: 0.95rem;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 100%;
+    max-width: 260px;
+  }
+}

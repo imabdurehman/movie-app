@@ -1,0 +1,25 @@
+:root {
+  /* Colors */
+  --bg: #0d1117;
+  --card-bg: #161b22;
+  --primary: #00f5ff;
+  --secondary: #ff007f;
+  --text: #f0f6fc;
+  --muted: #8b949e;
+  --border: #30363d;
+
+  /* Layout */
+  --container-width: 1200px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  /* Shadows */
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --glow: 0 0 18px rgba(0, 245, 255, 0.35);
+
+  /* Transition */
+  --transition: 0.3s ease;
+}
