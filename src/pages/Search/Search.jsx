@@ -21,6 +21,9 @@ const Search = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [noDataMessage, setNoDataMessage] = useState("");
 
+  const hasSearched =
+    loader || searchResult.length > 0 || errorMessage || noDataMessage;
+
   const handleMovieName = (e) => {
     setMovieName(e.target.value);
 
@@ -60,7 +63,9 @@ const Search = () => {
   };
 
   return (
-    <div className={styles.searchContainer}>
+    <div
+      className={`${styles.searchContainer} ${hasSearched ? styles.activeSearch : styles.initialSearch}`}
+    >
       <div className={styles.headingSection}>
         <h1 className={styles.heading}>Search Movies</h1>
 

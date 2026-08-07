@@ -8,7 +8,23 @@
   padding: 4rem 1.5rem;
 
   background: var(--bg);
+
+  transition: all 0.35s ease;
 }
+
+/* ---------- Initial State ---------- */
+
+.initialSearch {
+  justify-content: center;
+}
+
+/* ---------- After Search ---------- */
+
+.activeSearch {
+  justify-content: flex-start;
+}
+
+/* ---------- Heading ---------- */
 
 .headingSection {
   text-align: center;
@@ -32,6 +48,8 @@
   font-size: 1rem;
   line-height: 1.7;
 }
+
+/* ---------- Search Form ---------- */
 
 .searchForm {
   width: 100%;

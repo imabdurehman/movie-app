@@ -1,0 +1,217 @@
+.movieDetailsContainer {
+  min-height: calc(100vh - 145px);
+
+  background: var(--bg);
+}
+
+/* ---------- Backdrop ---------- */
+
+.backdrop {
+  width: 100%;
+  height: clamp(250px, 45vw, 500px);
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+.backdrop::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(13, 17, 23, 1),
+    rgba(13, 17, 23, 0.2)
+  );
+}
+
+.backdrop img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ---------- Content ---------- */
+
+.movieContent {
+  max-width: 1200px;
+
+  margin: -120px auto 0;
+  padding: 0 2rem;
+
+  display: flex;
+  gap: 2.5rem;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- Poster ---------- */
+
+.posterSection {
+  flex-shrink: 0;
+}
+
+.poster {
+  width: 320px;
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Info ---------- */
+
+.movieInfo {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  margin-bottom: 1rem;
+
+  color: var(--text);
+
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.metaInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  margin-bottom: 1.25rem;
+
+  color: var(--primary);
+
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+
+  margin-bottom: 1.5rem;
+}
+
+.genres span {
+  padding: 0.45rem 1rem;
+
+  background: var(--card-bg);
+  color: var(--text);
+
+  border: 1px solid var(--border);
+  border-radius: 999px;
+
+  font-size: 0.9rem;
+}
+
+.tagline {
+  color: var(--muted);
+
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+/* ---------- Overview ---------- */
+
+.overviewSection {
+  max-width: 1200px;
+
+  margin: 3rem auto 0;
+  padding: 0 2rem 4rem;
+}
+
+.overviewSection h2 {
+  margin-bottom: 1rem;
+
+  color: var(--text);
+
+  font-size: 1.8rem;
+}
+
+.overviewSection p {
+  color: var(--muted);
+
+  line-height: 1.9;
+  font-size: 1rem;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 992px) {
+  .backdrop {
+    height: 340px;
+  }
+
+  .movieContent {
+    margin-top: -100px;
+
+    gap: 2rem;
+  }
+
+  .poster {
+    width: 250px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
+  .backdrop {
+    height: 250px;
+  }
+
+  .movieContent {
+    margin-top: -70px;
+    padding: 0 1rem;
+
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+  }
+
+  .poster {
+    width: 220px;
+  }
+
+  .movieInfo {
+    align-items: center;
+  }
+
+  .metaInfo {
+    justify-content: center;
+  }
+
+  .genres {
+    justify-content: center;
+  }
+
+  .overviewSection {
+    margin-top: 2rem;
+    padding: 0 1rem 3rem;
+  }
+
+  .overviewSection h2 {
+    text-align: center;
+  }
+
+  .overviewSection p {
+    text-align: center;
+  }
+}
