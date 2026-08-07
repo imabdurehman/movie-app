@@ -167,7 +167,7 @@
 
 @media (max-width: 480px) {
   .home {
-    min-height: 80vh;
+    min-height: 70vh;
     background-image: url("../../assets/banner-phone.png");
 
     background-size: cover;
