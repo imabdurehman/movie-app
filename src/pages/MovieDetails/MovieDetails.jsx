@@ -4,6 +4,7 @@ import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { fetchMovieDetails } from "../../services/MovieApi";
 import { useParams } from "react-router-dom";
+import { FaCalendarAlt, FaClock, FaStar } from "react-icons/fa";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -59,9 +60,15 @@ const MovieDetails = () => {
               <h1 className={styles.title}>{moviedetails.title}</h1>
 
               <div className={styles.metaInfo}>
-                <span>⭐ {moviedetails.vote_average.toFixed(1)}</span>
-                <span>📅 {moviedetails.release_date?.slice(0, 4)}</span>
-                <span>⏱️ {moviedetails.runtime} min</span>
+                <span>
+                  <FaStar /> {moviedetails.vote_average.toFixed(1)}
+                </span>
+                <span>
+                  <FaCalendarAlt /> {moviedetails.release_date?.slice(0, 4)}
+                </span>
+                <span>
+                  <FaClock /> {moviedetails.runtime} min
+                </span>
               </div>
 
               <div className={styles.genres}>

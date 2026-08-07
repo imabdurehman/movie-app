@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./MovieCard.module.css";
+import { FaStar } from "react-icons/fa";
 
 const MovieCard = ({ movie }) => {
   return (
@@ -15,7 +16,9 @@ const MovieCard = ({ movie }) => {
         <h2 className={styles.title}>{movie.title}</h2>
 
         <div className={styles.info}>
-          <span>Rating : ⭐ {movie.vote_average.toFixed(1)}</span>
+          <span>
+            Rating : <FaStar /> {movie.vote_average.toFixed(1)}
+          </span>
           <span>Release : {movie.release_date?.slice(0, 4)}</span>
         </div>
       </div>

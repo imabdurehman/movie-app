@@ -167,9 +167,12 @@
 
 @media (max-width: 480px) {
   .home {
+    min-height: 80vh;
     background-image: url("../../assets/banner-phone.png");
 
+    background-size: cover;
     background-position: center top;
+    background-repeat: no-repeat;
 
     padding: 1.5rem;
     padding-bottom: 2.5rem;
