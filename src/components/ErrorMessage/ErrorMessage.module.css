@@ -1,0 +1,45 @@
+.errorContainer {
+  width: 100%;
+  max-width: 700px;
+
+  margin: 2rem auto;
+  padding: 1.2rem 1.5rem;
+
+  background: rgba(255, 0, 127, 0.08);
+
+  border: 1px solid rgba(255, 0, 127, 0.4);
+  border-left: 5px solid var(--secondary);
+
+  border-radius: var(--radius-md);
+
+  text-align: center;
+}
+
+.errorTitle {
+  margin-bottom: 0.5rem;
+
+  color: var(--secondary);
+
+  font-size: 1.3rem;
+}
+
+.errorText {
+  color: var(--text);
+
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  .errorContainer {
+    padding: 1rem;
+  }
+
+  .errorTitle {
+    font-size: 1.15rem;
+  }
+
+  .errorText {
+    font-size: 0.95rem;
+  }
+}

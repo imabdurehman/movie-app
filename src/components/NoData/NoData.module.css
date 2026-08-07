@@ -1,0 +1,68 @@
+.noDataContainer {
+  width: 100%;
+  max-width: 700px;
+
+  margin: 2rem auto;
+  padding: 2rem 1.5rem;
+
+  background: var(--card-bg);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  text-align: center;
+
+  box-shadow: var(--shadow);
+}
+
+.noDataTitle {
+  margin-bottom: 0.75rem;
+
+  color: var(--primary);
+
+  font-size: 1.5rem;
+}
+
+.noDataText {
+  color: var(--muted);
+
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 768px) {
+  .noDataContainer {
+    max-width: 400px;
+
+    padding: 1.75rem 1.25rem;
+  }
+
+  .noDataTitle {
+    font-size: 1.35rem;
+  }
+
+  .noDataText {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 480px) {
+  .noDataContainer {
+    max-width: 340px;
+
+    padding: 1.5rem 1rem;
+  }
+
+  .noDataTitle {
+    font-size: 1.2rem;
+  }
+
+  .noDataText {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}

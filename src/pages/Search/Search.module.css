@@ -1,0 +1,156 @@
+.searchContainer {
+  min-height: calc(100vh - 145px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 4rem 1.5rem;
+
+  background: var(--bg);
+}
+
+.headingSection {
+  text-align: center;
+
+  margin-bottom: 2.5rem;
+}
+
+.heading {
+  margin-bottom: 0.8rem;
+
+  color: var(--text);
+
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.subHeading {
+  max-width: 550px;
+
+  color: var(--muted);
+
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.searchForm {
+  width: 100%;
+  max-width: 700px;
+
+  display: flex;
+  gap: 0.5rem;
+}
+
+.searchInput {
+  flex: 1;
+
+  padding: 1rem 1.2rem;
+
+  background: var(--card-bg);
+  color: var(--text);
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  font-size: 1rem;
+
+  outline: none;
+
+  transition: var(--transition);
+}
+
+.searchInput::placeholder {
+  color: var(--muted);
+}
+
+.searchButton {
+  padding: 0 2rem;
+
+  background: var(--primary);
+  color: var(--bg);
+
+  border: none;
+  border-radius: var(--radius-md);
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: var(--transition);
+}
+
+.searchButton:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 0 12px rgba(0, 245, 255, 0.45),
+    0 0 28px rgba(0, 245, 255, 0.25);
+}
+
+/* ---------- Movies Grid ---------- */
+
+.moviesGrid {
+  width: 100%;
+  max-width: 1300px;
+
+  margin-top: 3rem;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 2rem;
+}
+
+/* ---------- Large Tablet ---------- */
+
+@media (max-width: 900px) {
+  .searchContainer {
+    padding: 3rem 1.25rem;
+  }
+
+  .moviesGrid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 1.75rem;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 576px) {
+  .searchContainer {
+    padding: 2.5rem 1rem;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .subHeading {
+    font-size: 0.95rem;
+  }
+
+  .searchForm {
+    gap: 0.4rem;
+  }
+
+  .searchInput {
+    font-size: 0.95rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .searchButton {
+    padding: 0.9rem 1.2rem;
+
+    font-size: 0.95rem;
+
+    white-space: nowrap;
+  }
+
+  .moviesGrid {
+    grid-template-columns: 1fr;
+
+    gap: 1.25rem;
+  }
+}
