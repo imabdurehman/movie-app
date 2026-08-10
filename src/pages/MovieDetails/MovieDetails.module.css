@@ -101,32 +101,55 @@
   align-items: center;
   justify-content: center;
 
+  padding: 0;
+
   background: rgba(22, 27, 34, 0.9);
 
   border: 1px solid var(--border);
   border-radius: 50%;
 
+  color: var(--text);
+
   cursor: pointer;
 
-  transition: var(--transition);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.favoriteButton:hover {
-  background: var(--secondary);
+/* Desktop / devices with real hover */
+@media (hover: hover) and (pointer: fine) {
+  .favoriteButton:hover {
+    transform: scale(1.08);
 
-  transform: scale(1.08);
-
-  box-shadow: 0 0 18px rgba(255, 0, 127, 0.35);
+    box-shadow:
+      0 0 12px rgba(255, 0, 127, 0.3),
+      0 0 24px rgba(255, 0, 127, 0.2);
+  }
 }
 
-/* Heart Colors */
-
+/* Heart icon */
 .heart {
   color: #ffffff;
+
+  font-size: 1.1rem;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
+/* Favourite / active state */
 .activeHeart {
-  color: #ff007f;
+  color: var(--secondary);
+
+  font-size: 1.1rem;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .favoriteButton svg {
@@ -236,8 +259,13 @@
   }
 
   .favoriteButton {
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
+  }
+
+  .heart,
+  .activeHeart {
+    font-size: 1rem;
   }
 }
 
@@ -276,8 +304,13 @@
   }
 
   .favoriteButton {
-    width: 46px;
-    height: 46px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .heart,
+  .activeHeart {
+    font-size: 0.95rem;
   }
 
   .metaInfo {

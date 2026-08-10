@@ -46,37 +46,45 @@
   top: 12px;
   right: 12px;
 
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: rgba(13, 17, 23, 0.8);
+  padding: 0;
 
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(13, 17, 23, 0.7);
+
+  border: 1px solid var(--border);
   border-radius: 50%;
+
+  color: var(--text);
 
   backdrop-filter: blur(8px);
 
   cursor: pointer;
 
-  transition: var(--transition);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 
   z-index: 10;
-
-  padding: 0;
 }
 
-.favoriteButton:hover {
-  background: var(--secondary);
+/* Desktop hover only */
+@media (hover: hover) and (pointer: fine) {
+  .favoriteButton:hover {
+    transform: scale(1.08);
 
-  transform: scale(1.1);
+    box-shadow: 0 0 18px rgba(255, 0, 127, 0.35);
+  }
 }
 
-/* Heart Colors */
-
+/* Heart */
 .heart {
   color: #ffffff;
 }
@@ -84,8 +92,9 @@
 .activeHeart {
   color: #ff007f;
 }
+
 .favoriteButton svg {
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .ratingIcon {

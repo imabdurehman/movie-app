@@ -13,15 +13,15 @@ const Home = () => {
         <div className={styles.overlay}></div>
 
         <div className={styles.content}>
-          <p className={styles.tag}>Movie Streaming Platform</p>
+          <p className={styles.tag}>Movie Discovery Platform</p>
 
           <h1 className={styles.title}>
-            Discover. Stream. <span>Enjoy.</span>
+            Discover. Explore. <span>Enjoy.</span>
           </h1>
 
           <p className={styles.description}>
-            Explore thousands of movies, discover trending titles, and find your
-            next favorite film all in one place.
+            Explore a vast collection of movies, discover trending titles, and
+            find your next favorite film all in one place.
           </p>
 
           <div className={styles.buttonGroup}>
