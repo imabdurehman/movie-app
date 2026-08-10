@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Search.module.css";
 import { fetchSearchMovies } from "../../services/MovieApi";
 import Loader from "../../components/Loader/Loader";
@@ -9,9 +9,12 @@ import MovieCard from "../../components/MovieCard/MovieCard";
 const Search = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [movieName, setMovieName] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [loader, setLoader] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [noDataMessage, setNoDataMessage] = useState("");
+  const [searchPage, setSearchPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const hasSearched =
     loader || searchResult.length > 0 || errorMessage || noDataMessage;
@@ -23,36 +26,53 @@ const Search = () => {
     setNoDataMessage("");
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (movieName.trim() === "") {
+    const query = movieName.trim();
+
+    if (!query) {
       setErrorMessage("Please enter movie name.");
       return;
     }
 
-    try {
-      setLoader(true);
-      setErrorMessage("");
-      setNoDataMessage("");
-      setSearchResult([]);
-
-      const data = await fetchSearchMovies(movieName);
-
-      if (data.results.length === 0) {
-        setNoDataMessage(
-          `No movies found for "${movieName}". Try another title.`,
-        );
-        return;
-      }
-
-      setSearchResult(data.results);
-    } catch (error) {
-      setErrorMessage(error.message);
-    } finally {
-      setLoader(false);
-    }
+    setSearchPage(1);
+    setSearchQuery(query);
   };
+
+  useEffect(() => {
+    const loadSearchMovies = async () => {
+      if (!searchQuery) return;
+
+      try {
+        setLoader(true);
+        setErrorMessage("");
+        setNoDataMessage("");
+
+        const data = await fetchSearchMovies(searchQuery, searchPage);
+        console.log(data);
+
+        if (data.results.length === 0) {
+          setNoDataMessage(
+            `No movies found for "${searchQuery}". Try another title.`,
+          );
+
+          setSearchResult([]);
+          return;
+        }
+
+        setSearchResult(data.results);
+
+        setTotalPages(data.total_pages);
+      } catch (error) {
+        setErrorMessage(error.message);
+      } finally {
+        setLoader(false);
+      }
+    };
+
+    loadSearchMovies();
+  }, [searchPage, searchQuery]);
 
   return (
     <div
@@ -91,6 +111,24 @@ const Search = () => {
           {searchResult.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
+        </div>
+      )}
+
+      {searchResult.length > 0 && (
+        <div className={styles.pagination}>
+          <button
+            onClick={() => setSearchPage((prev) => Math.max(1, prev - 1))}
+            disabled={searchPage === 1}
+          >
+            Previous
+          </button>
+          <span>{searchPage}</span>
+          <button
+            onClick={() => setSearchPage((prev) => prev + 1)}
+            disabled={searchPage === totalPages}
+          >
+            Next
+          </button>
         </div>
       )}
     </div>

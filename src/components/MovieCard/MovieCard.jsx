@@ -5,25 +5,9 @@ import { FaStar, FaHeart } from "react-icons/fa";
 import { useMovie } from "../../context/MoviesContext";
 
 const MovieCard = ({ movie }) => {
-  const { favouriteMovies, setFavouriteMovies } = useMovie();
+  const { favouriteMovies, addFavourite, removeFavourite } = useMovie();
 
   const isFavourite = favouriteMovies.some((item) => item.id === movie.id);
-
-  const addFavourite = (movie) => {
-    setFavouriteMovies((prev) => {
-      const alreadyExist = favouriteMovies.some((item) => item.id === movie.id);
-
-      if (alreadyExist) {
-        return prev;
-      }
-
-      return [...prev, movie];
-    });
-  };
-
-  const removeFavourite = (id) => {
-    setFavouriteMovies((prev) => prev.filter((movie) => movie.id !== id));
-  };
 
   return (
     <Link to={`/movie/${movie?.id}`} className={styles.card}>

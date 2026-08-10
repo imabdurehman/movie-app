@@ -1,8 +1,8 @@
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
-export const fetchSearchMovies = async (movieName) => {
+export const fetchSearchMovies = async (movieName, searchPage) => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(movieName)}`,
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(movieName)}&page=${searchPage}`,
   );
 
   const data = await response.json();
@@ -16,9 +16,9 @@ export const fetchSearchMovies = async (movieName) => {
   return data;
 };
 
-export const fetchPopularMovies = async () => {
+export const fetchPopularMovies = async (moviePage) => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
+    `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${moviePage}`,
   );
 
   const data = await response.json();

@@ -9,7 +9,8 @@ import { useMovie } from "../../context/MoviesContext";
 
 const MovieDetails = () => {
   const { id } = useParams();
-  const { favouriteMovies, setFavouriteMovies, addRecentMovie } = useMovie();
+  const { favouriteMovies, addRecentMovie, addFavourite, removeFavourite } =
+    useMovie();
 
   const [moviedetails, setMovieDetails] = useState(null);
   const [loader, setLoader] = useState(false);
@@ -43,22 +44,6 @@ const MovieDetails = () => {
   const isFavourite = favouriteMovies.some(
     (item) => item?.id === moviedetails?.id,
   );
-
-  const addFavourite = (moviedetails) => {
-    setFavouriteMovies((prev) => {
-      const alreadyExist = prev.some((item) => item.id === moviedetails.id);
-
-      if (alreadyExist) {
-        return prev;
-      }
-
-      return [...prev, moviedetails];
-    });
-  };
-
-  const removeFavourite = (id) => {
-    setFavouriteMovies((prev) => prev.filter((movie) => movie.id !== id));
-  };
 
   return (
     <>

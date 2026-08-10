@@ -24,11 +24,27 @@ export const MovieProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : [];
   });
 
+  const addFavourite = (movie) => {
+    setFavouriteMovies((prev) => {
+      const alreadyExist = prev.some((item) => item.id === movie.id);
+
+      if (alreadyExist) {
+        return prev;
+      }
+
+      return [...prev, movie];
+    });
+  };
+
+  const removeFavourite = (id) => {
+    setFavouriteMovies((prev) => prev.filter((movie) => movie.id !== id));
+  };
+
   const addRecentMovie = useCallback((movie) => {
     setRecentlyViewed((prev) => {
-      const recentMovie = prev.filter((item) => item.id !== movie.id);
+      const recentMovies = prev.filter((item) => item.id !== movie.id);
 
-      return [movie, ...recentMovie].slice(0, 5);
+      return [movie, ...recentMovies].slice(0, 5);
     });
   }, []);
 
@@ -42,10 +58,10 @@ export const MovieProvider = ({ children }) => {
     <MovieContext.Provider
       value={{
         favouriteMovies,
-        setFavouriteMovies,
         recentlyViewed,
-        setRecentlyViewed,
         addRecentMovie,
+        addFavourite,
+        removeFavourite,
       }}
     >
       {children}

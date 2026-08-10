@@ -9,6 +9,8 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [loader, setLoader] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [moviePage, setMoviePage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     const loadPopularMovies = async () => {
@@ -16,9 +18,11 @@ const Movies = () => {
         setLoader(true);
         setErrorMessage("");
 
-        const data = await fetchPopularMovies();
+        const data = await fetchPopularMovies(moviePage);
 
         setMovies(data.results);
+
+        setTotalPages(data.total_pages);
       } catch (error) {
         setErrorMessage(error.message);
       } finally {
@@ -27,7 +31,7 @@ const Movies = () => {
     };
 
     loadPopularMovies();
-  }, []);
+  }, [moviePage]);
 
   return (
     <div className={styles.moviesContainer}>
@@ -42,6 +46,24 @@ const Movies = () => {
           {movies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
+        </div>
+      )}
+
+      {movies.length > 0 && (
+        <div className={styles.pagination}>
+          <button
+            onClick={() => setMoviePage((prev) => Math.max(1, prev - 1))}
+            disabled={moviePage === 1}
+          >
+            Previous
+          </button>
+          <span>{moviePage}</span>
+          <button
+            onClick={() => setMoviePage((prev) => prev + 1)}
+            disabled={moviePage === totalPages}
+          >
+            Next
+          </button>
         </div>
       )}
     </div>
