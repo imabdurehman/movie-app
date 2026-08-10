@@ -112,11 +112,13 @@ const MovieDetails = () => {
                 </span>
 
                 <span>
-                  <FaCalendarAlt /> {moviedetails.release_date?.slice(0, 4)}
+                  <FaCalendarAlt className={styles.calendarIcon} />{" "}
+                  {moviedetails.release_date?.slice(0, 4)}
                 </span>
 
                 <span>
-                  <FaClock /> {moviedetails?.runtime} min
+                  <FaClock className={styles.timeIcon} />{" "}
+                  {moviedetails?.runtime} min
                 </span>
               </div>
 
