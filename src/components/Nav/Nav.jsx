@@ -32,6 +32,12 @@ const Nav = () => {
             Movies
           </NavLink>
         </li>
+
+        <li className={styles.navItem}>
+          <NavLink className={activeCheck} to="/favourites">
+            Favorites
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

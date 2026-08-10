@@ -75,13 +75,69 @@
   justify-content: center;
 }
 
-.title {
-  margin-bottom: 1rem;
+/* NEW */
 
+.titleSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-bottom: 1rem;
+}
+
+.title {
   color: var(--text);
 
   font-size: clamp(2rem, 4vw, 3rem);
 }
+
+.favoriteButton {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(22, 27, 34, 0.9);
+
+  border: 1px solid var(--border);
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition: var(--transition);
+}
+
+.favoriteButton:hover {
+  background: var(--secondary);
+
+  transform: scale(1.08);
+
+  box-shadow: 0 0 18px rgba(255, 0, 127, 0.35);
+}
+
+/* Heart Colors */
+
+.heart {
+  color: #ffffff;
+}
+
+.activeHeart {
+  color: #ff007f;
+}
+
+.favoriteButton svg {
+  font-size: 1.2rem;
+}
+
+.ratingIcon {
+  color: #ffd700;
+}
+
+/* ---------- Meta ---------- */
 
 .metaInfo {
   display: flex;
@@ -94,6 +150,12 @@
 
   font-size: 1rem;
   font-weight: 600;
+}
+
+.metaInfo span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .genres {
@@ -167,6 +229,11 @@
   .title {
     font-size: 2.2rem;
   }
+
+  .favoriteButton {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 /* ---------- Mobile ---------- */
@@ -192,6 +259,20 @@
 
   .movieInfo {
     align-items: center;
+  }
+
+  .titleSection {
+    width: 100%;
+
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 1rem;
+  }
+
+  .favoriteButton {
+    width: 46px;
+    height: 46px;
   }
 
   .metaInfo {

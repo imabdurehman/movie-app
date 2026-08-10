@@ -1,4 +1,10 @@
-.home {
+.homePage {
+  background: var(--bg);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
   position: relative;
   min-height: calc(100vh - 145px);
 
@@ -132,10 +138,58 @@
   transform: translateY(-3px);
 }
 
+/* ---------- Recently Viewed ---------- */
+
+.recentSection {
+  padding: 5rem 2rem 4rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  margin-bottom: 0.6rem;
+
+  color: var(--text);
+
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.sectionDescription {
+  color: var(--muted);
+
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.recentMoviesGrid {
+  display: flex;
+  gap: 2rem;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding-bottom: 1rem;
+
+  scroll-behavior: smooth;
+}
+
+.recentMoviesGrid > * {
+  flex: 0 0 250px;
+}
+
 /* ---------- Tablet ---------- */
 
 @media (max-width: 768px) {
-  .home {
+  .hero {
     padding-bottom: 3rem;
   }
 
@@ -161,15 +215,27 @@
     width: 230px;
     text-align: center;
   }
+
+  .recentSection {
+    padding: 4rem 1.5rem 3rem;
+  }
+
+  .recentMoviesGrid {
+    gap: 1.5rem;
+  }
+
+  .recentMoviesGrid > * {
+    flex: 0 0 220px;
+  }
 }
 
 /* ---------- Mobile ---------- */
 
 @media (max-width: 480px) {
-  .home {
+  .hero {
     min-height: 70vh;
-    background-image: url("../../assets/banner-phone.png");
 
+    background-image: url("../../assets/banner-phone.png");
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
@@ -200,5 +266,25 @@
   .secondaryBtn {
     width: 100%;
     max-width: 260px;
+  }
+
+  .recentSection {
+    padding: 3rem 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+
+  .sectionDescription {
+    font-size: 0.95rem;
+  }
+
+  .recentMoviesGrid {
+    gap: 1rem;
+  }
+
+  .recentMoviesGrid > * {
+    flex: 0 0 180px;
   }
 }

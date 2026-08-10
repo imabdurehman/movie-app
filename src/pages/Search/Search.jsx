@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./Search.module.css";
-// import { useMovie } from "../../context/MoviesContext";
 import { fetchSearchMovies } from "../../services/MovieApi";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
@@ -8,13 +7,6 @@ import NoData from "../../components/NoData/NoData";
 import MovieCard from "../../components/MovieCard/MovieCard";
 
 const Search = () => {
-  // const {
-  //   favouriteMovies,
-  //   setFavouriteMovies,
-  //   recentlyViewed,
-  //   setRecentlyViewed,
-  // } = useMovie();
-
   const [searchResult, setSearchResult] = useState([]);
   const [movieName, setMovieName] = useState("");
   const [loader, setLoader] = useState(false);

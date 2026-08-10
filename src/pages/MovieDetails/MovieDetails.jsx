@@ -4,10 +4,12 @@ import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { fetchMovieDetails } from "../../services/MovieApi";
 import { useParams } from "react-router-dom";
-import { FaCalendarAlt, FaClock, FaStar } from "react-icons/fa";
+import { FaCalendarAlt, FaClock, FaStar, FaHeart } from "react-icons/fa";
+import { useMovie } from "../../context/MoviesContext";
 
 const MovieDetails = () => {
   const { id } = useParams();
+  const { favouriteMovies, setFavouriteMovies, addRecentMovie } = useMovie();
 
   const [moviedetails, setMovieDetails] = useState(null);
   const [loader, setLoader] = useState(false);
@@ -32,6 +34,32 @@ const MovieDetails = () => {
     loadMovieDetails();
   }, [id]);
 
+  useEffect(() => {
+    if (moviedetails) {
+      addRecentMovie(moviedetails);
+    }
+  }, [moviedetails, addRecentMovie]);
+
+  const isFavourite = favouriteMovies.some(
+    (item) => item?.id === moviedetails?.id,
+  );
+
+  const addFavourite = (moviedetails) => {
+    setFavouriteMovies((prev) => {
+      const alreadyExist = prev.some((item) => item.id === moviedetails.id);
+
+      if (alreadyExist) {
+        return prev;
+      }
+
+      return [...prev, moviedetails];
+    });
+  };
+
+  const removeFavourite = (id) => {
+    setFavouriteMovies((prev) => prev.filter((movie) => movie.id !== id));
+  };
+
   return (
     <>
       {loader && <Loader />}
@@ -42,8 +70,8 @@ const MovieDetails = () => {
         <div className={styles.movieDetailsContainer}>
           <div className={styles.backdrop}>
             <img
-              src={`https://image.tmdb.org/t/p/original${moviedetails.backdrop_path}`}
-              alt={moviedetails.title}
+              src={`https://image.tmdb.org/t/p/original${moviedetails?.backdrop_path}`}
+              alt={moviedetails?.title}
             />
           </div>
 
@@ -51,23 +79,44 @@ const MovieDetails = () => {
             <div className={styles.posterSection}>
               <img
                 className={styles.poster}
-                src={`https://image.tmdb.org/t/p/w500${moviedetails.poster_path}`}
-                alt={moviedetails.title}
+                src={`https://image.tmdb.org/t/p/w500${moviedetails?.poster_path}`}
+                alt={moviedetails?.title}
               />
             </div>
 
             <div className={styles.movieInfo}>
-              <h1 className={styles.title}>{moviedetails.title}</h1>
+              <div className={styles.titleSection}>
+                <h1 className={styles.title}>{moviedetails?.title}</h1>
+
+                <button
+                  className={styles.favoriteButton}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    isFavourite
+                      ? removeFavourite(moviedetails.id)
+                      : addFavourite(moviedetails);
+                  }}
+                >
+                  <FaHeart
+                    className={isFavourite ? styles.activeHeart : styles.heart}
+                  />
+                </button>
+              </div>
 
               <div className={styles.metaInfo}>
                 <span>
-                  <FaStar /> {moviedetails.vote_average.toFixed(1)}
+                  <FaStar className={styles.ratingIcon} />{" "}
+                  {moviedetails.vote_average?.toFixed(1)}
                 </span>
+
                 <span>
                   <FaCalendarAlt /> {moviedetails.release_date?.slice(0, 4)}
                 </span>
+
                 <span>
-                  <FaClock /> {moviedetails.runtime} min
+                  <FaClock /> {moviedetails?.runtime} min
                 </span>
               </div>
 
