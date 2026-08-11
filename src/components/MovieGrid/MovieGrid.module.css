@@ -1,0 +1,37 @@
+/* ---------- Movies Grid ---------- */
+
+.moviesGrid {
+  width: 100%;
+  max-width: 1300px;
+
+  margin-top: 3rem;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 2rem;
+}
+
+/* ---------- Large Tablet ---------- */
+
+@media (max-width: 900px) {
+  .searchContainer {
+    padding: 3rem 1.25rem;
+  }
+
+  .moviesGrid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 1.75rem;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 576px) {
+  .moviesGrid {
+    grid-template-columns: 1fr;
+
+    gap: 1.25rem;
+  }
+}

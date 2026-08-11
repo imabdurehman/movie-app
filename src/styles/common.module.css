@@ -1,0 +1,46 @@
+.moviesContainer {
+  min-height: calc(100vh - 145px);
+
+  padding: 4rem 1.5rem;
+
+  background: var(--bg);
+}
+
+.moviesHeading {
+  margin-bottom: 3rem;
+
+  color: var(--text);
+
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+
+  text-align: center;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 768px) {
+  .moviesContainer {
+    padding: 3rem 1.25rem;
+  }
+
+  .moviesHeading {
+    margin-bottom: 2.5rem;
+
+    font-size: 2.3rem;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 480px) {
+  .moviesContainer {
+    padding: 2.5rem 1rem;
+  }
+
+  .moviesHeading {
+    margin-bottom: 2rem;
+
+    font-size: 2rem;
+  }
+}

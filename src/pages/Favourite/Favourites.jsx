@@ -1,24 +1,21 @@
 import React from "react";
 import { useMovie } from "../../context/MoviesContext";
-import MovieCard from "../../components/MovieCard/MovieCard";
+import MovieGrid from "../../components/MovieGrid/MovieGrid";
 import styles from "./Favourite.module.css";
+import commonStyles from "../../styles/common.module.css";
 
 const Favourites = () => {
   const { favouriteMovies } = useMovie();
 
   return (
-    <div className={styles.favouriteContainer}>
-      <h1 className={styles.heading}>Favourite Movies</h1>
+    <div className={commonStyles.moviesContainer}>
+      <h1 className={commonStyles.moviesHeading}>Favourite Movies</h1>
 
       {favouriteMovies.length === 0 && (
         <p className={styles.emptyMessage}>No favourite movies yet.</p>
       )}
 
-      <div className={styles.moviesGrid}>
-        {favouriteMovies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
+      <MovieGrid movies={favouriteMovies} />
     </div>
   );
 };

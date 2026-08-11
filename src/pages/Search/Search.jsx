@@ -4,7 +4,8 @@ import { fetchSearchMovies } from "../../services/MovieApi";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import NoData from "../../components/NoData/NoData";
-import MovieCard from "../../components/MovieCard/MovieCard";
+import MovieGrid from "../../components/MovieGrid/MovieGrid";
+import Pagination from "../../components/Pagination/Pagination";
 
 const Search = () => {
   const [searchResult, setSearchResult] = useState([]);
@@ -107,36 +108,14 @@ const Search = () => {
 
       {noDataMessage && <NoData message={noDataMessage} />}
 
-      {!loader && (
-        <div className={styles.moviesGrid}>
-          {searchResult.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div>
-      )}
+      {!loader && <MovieGrid movies={searchResult} />}
 
       {searchResult.length > 0 && (
-        <div className={styles.pagination}>
-          <button
-            onClick={() => {
-              setSearchPage((prev) => Math.max(1, prev - 1));
-              window.scrollTo({ top: 0, behavior: "instant" });
-            }}
-            disabled={searchPage === 1}
-          >
-            Previous
-          </button>
-          <span>{searchPage}</span>
-          <button
-            onClick={() => {
-              setSearchPage((prev) => prev + 1);
-              window.scrollTo({ top: 0, behavior: "instant" });
-            }}
-            disabled={searchPage === totalPages}
-          >
-            Next
-          </button>
-        </div>
+        <Pagination
+          currentPage={searchPage}
+          totalPages={totalPages}
+          onPageChange={setSearchPage}
+        />
       )}
     </div>
   );

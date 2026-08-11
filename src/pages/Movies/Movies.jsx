@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import MovieCard from "../../components/MovieCard/MovieCard";
-import styles from "./Movies.module.css";
+import commonStyles from "../../styles/common.module.css";
 import { fetchPopularMovies } from "../../services/MovieApi";
+import MovieGrid from "../../components/MovieGrid/MovieGrid";
+import Pagination from "../../components/Pagination/Pagination";
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -35,43 +36,21 @@ const Movies = () => {
   }, [moviePage]);
 
   return (
-    <div className={styles.moviesContainer}>
-      <h1 className={styles.heading}>Popular Movies</h1>
+    <div className={commonStyles.moviesContainer}>
+      <h1 className={commonStyles.moviesHeading}>Popular Movies</h1>
 
       {errorMessage && <ErrorMessage message={errorMessage} />}
 
       {loader && <Loader />}
 
-      {!loader && (
-        <div className={styles.moviesGrid}>
-          {movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-        </div>
-      )}
+      {!loader && <MovieGrid movies={movies} />}
 
       {movies.length > 0 && (
-        <div className={styles.pagination}>
-          <button
-            onClick={() => {
-              setMoviePage((prev) => Math.max(1, prev - 1));
-              window.scrollTo({ top: 0, behavior: "instant" });
-            }}
-            disabled={moviePage === 1}
-          >
-            Previous
-          </button>
-          <span>{moviePage}</span>
-          <button
-            onClick={() => {
-              setMoviePage((prev) => prev + 1);
-              window.scrollTo({ top: 0, behavior: "instant" });
-            }}
-            disabled={moviePage === totalPages}
-          >
-            Next
-          </button>
-        </div>
+        <Pagination
+          currentPage={moviePage}
+          totalPages={totalPages}
+          onPageChange={setMoviePage}
+        />
       )}
     </div>
   );
