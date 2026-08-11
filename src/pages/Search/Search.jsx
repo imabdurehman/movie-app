@@ -10,9 +10,11 @@ const Search = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [movieName, setMovieName] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+
   const [loader, setLoader] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [noDataMessage, setNoDataMessage] = useState("");
+
   const [searchPage, setSearchPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -50,7 +52,6 @@ const Search = () => {
         setNoDataMessage("");
 
         const data = await fetchSearchMovies(searchQuery, searchPage);
-        console.log(data);
 
         if (data.results.length === 0) {
           setNoDataMessage(
@@ -117,14 +118,20 @@ const Search = () => {
       {searchResult.length > 0 && (
         <div className={styles.pagination}>
           <button
-            onClick={() => setSearchPage((prev) => Math.max(1, prev - 1))}
+            onClick={() => {
+              setSearchPage((prev) => Math.max(1, prev - 1));
+              window.scrollTo({ top: 0, behavior: "instant" });
+            }}
             disabled={searchPage === 1}
           >
             Previous
           </button>
           <span>{searchPage}</span>
           <button
-            onClick={() => setSearchPage((prev) => prev + 1)}
+            onClick={() => {
+              setSearchPage((prev) => prev + 1);
+              window.scrollTo({ top: 0, behavior: "instant" });
+            }}
             disabled={searchPage === totalPages}
           >
             Next

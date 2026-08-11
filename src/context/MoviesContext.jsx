@@ -44,7 +44,7 @@ export const MovieProvider = ({ children }) => {
     setRecentlyViewed((prev) => {
       const recentMovies = prev.filter((item) => item.id !== movie.id);
 
-      return [movie, ...recentMovies].slice(0, 5);
+      return [movie, ...recentMovies].slice(0, 8);
     });
   }, []);
 
