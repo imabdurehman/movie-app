@@ -2,10 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./MovieCard.module.css";
 import { FaStar, FaHeart } from "react-icons/fa";
-import { useMovie } from "../../context/MoviesContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavourite, removeFavourite } from "../../redux/favouriteMovieSlice";
 
 const MovieCard = ({ movie }) => {
-  const { favouriteMovies, addFavourite, removeFavourite } = useMovie();
+  const dispatch = useDispatch();
+
+  const favouriteMovies = useSelector((state) => state.favouriteMovie);
 
   const isFavourite = favouriteMovies.some((item) => item.id === movie.id);
 
@@ -24,7 +27,9 @@ const MovieCard = ({ movie }) => {
             e.preventDefault();
             e.stopPropagation();
 
-            isFavourite ? removeFavourite(movie.id) : addFavourite(movie);
+            isFavourite
+              ? dispatch(removeFavourite(movie.id))
+              : dispatch(addFavourite(movie));
           }}
         >
           <FaHeart

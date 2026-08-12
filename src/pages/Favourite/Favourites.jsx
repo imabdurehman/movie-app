@@ -1,11 +1,11 @@
 import React from "react";
-import { useMovie } from "../../context/MoviesContext";
 import MovieGrid from "../../components/MovieGrid/MovieGrid";
 import styles from "./Favourite.module.css";
 import commonStyles from "../../styles/common.module.css";
+import { useSelector } from "react-redux";
 
 const Favourites = () => {
-  const { favouriteMovies } = useMovie();
+  const favouriteMovies = useSelector((state) => state.favouriteMovie);
 
   return (
     <div className={commonStyles.moviesContainer}>

@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
-import { useMovie } from "../../context/MoviesContext";
+import { useSelector } from "react-redux";
 import MovieCard from "../../components/MovieCard/MovieCard";
 
 const Home = () => {
-  const { recentlyViewed } = useMovie();
+  const recentMovies = useSelector((state) => state.recentViewed);
 
   return (
     <main className={styles.homePage}>
@@ -46,11 +46,17 @@ const Home = () => {
             </p>
           </div>
 
-          <div className={styles.recentMoviesGrid}>
-            {recentlyViewed.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))}
-          </div>
+          {recentMovies.length > 0 ? (
+            <div className={styles.recentMoviesGrid}>
+              {recentMovies.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} />
+              ))}
+            </div>
+          ) : (
+            <p className={styles.emptyMessage}>
+              No recently viewed movies yet.
+            </p>
+          )}
         </div>
       </section>
     </main>

@@ -5,16 +5,24 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { fetchMovieDetails } from "../../services/MovieApi";
 import { useParams } from "react-router-dom";
 import { FaCalendarAlt, FaClock, FaStar, FaHeart } from "react-icons/fa";
-import { useMovie } from "../../context/MoviesContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavourite, removeFavourite } from "../../redux/favouriteMovieSlice";
+import { addRecentMovie } from "../../redux/recentViewedSlice";
 
 const MovieDetails = () => {
   const { id } = useParams();
-  const { favouriteMovies, addRecentMovie, addFavourite, removeFavourite } =
-    useMovie();
 
   const [moviedetails, setMovieDetails] = useState(null);
   const [loader, setLoader] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const dispatch = useDispatch();
+
+  const favouriteMovies = useSelector((state) => state.favouriteMovie);
+
+  const isFavourite = favouriteMovies.some(
+    (item) => item.id === moviedetails?.id,
+  );
 
   useEffect(() => {
     const loadMovieDetails = async () => {
@@ -37,13 +45,9 @@ const MovieDetails = () => {
 
   useEffect(() => {
     if (moviedetails) {
-      addRecentMovie(moviedetails);
+      dispatch(addRecentMovie(moviedetails));
     }
-  }, [moviedetails, addRecentMovie]);
-
-  const isFavourite = favouriteMovies.some(
-    (item) => item?.id === moviedetails?.id,
-  );
+  }, [moviedetails, dispatch]);
 
   return (
     <>
@@ -80,8 +84,8 @@ const MovieDetails = () => {
                     e.stopPropagation();
 
                     isFavourite
-                      ? removeFavourite(moviedetails.id)
-                      : addFavourite(moviedetails);
+                      ? dispatch(removeFavourite(moviedetails.id))
+                      : dispatch(addFavourite(moviedetails));
                   }}
                 >
                   <FaHeart
