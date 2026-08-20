@@ -1,70 +1,276 @@
-# Getting Started with Create React App
+# 🎬 Movie Plus
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Movie Plus** is a modern and responsive movie discovery platform built with **React.js** and the **TMDB API**. Users can browse movies, search for specific titles, view detailed movie information, manage favourite movies, and keep track of recently viewed movies.
 
-## Available Scripts
+## 🌐 Live Demo
 
-In the project directory, you can run:
+https://movieplus-abd.vercel.app/
 
-### `npm start`
+## ✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* 🎬 Browse movies from TMDB
+* 🔎 Search movies by title
+* 📄 View detailed movie information
+* 🧭 Dynamic movie details using route parameters
+* ❤️ Add and remove favourite movies
+* 👀 Recently viewed movies
+* 🔢 Pagination for movie listings and search results
+* 💾 Persist favourites and recently viewed movies using Local Storage
+* ⚡ Redux Toolkit for global state management
+* 🔄 Loading states
+* ❌ API error handling
+* 📭 No-data states
+* 📱 Responsive design for desktop, tablet, and mobile
+* 🧩 Reusable components
+* 🛣️ Client-side routing with React Router
+* 🎨 Cinematic cyberpunk-inspired UI
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+### Frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* React.js
+* JavaScript (ES6+)
+* React Router
+* Redux Toolkit
+* CSS Modules
+* React Icons
 
-### `npm run build`
+### API
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* TMDB API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Tools
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Create React App
+* Git & GitHub
+* Vercel
+* Local Storage
 
-### `npm run eject`
+## 📂 Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```text
+src/
+├── components/
+│   ├── ErrorMessage/
+│   ├── Loader/
+│   ├── MovieCard/
+│   ├── MovieGrid/
+│   ├── NoData/
+│   └── Pagination/
+│
+├── pages/
+│   ├── Home/
+│   ├── Movies/
+│   ├── MovieDetails/
+│   ├── Search/
+│   └── Favourite/
+│
+├── redux/
+│   ├── favouriteMovieSlice.js
+│   ├── recentViewedSlice.js
+│   └── store.js
+│
+├── services/
+│   └── MovieApi.js
+│
+├── styles/
+│   └── common.module.css
+│
+└── index.js
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🧠 State Management
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Movie Plus uses **Redux Toolkit** for global state management.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The application maintains two main pieces of global state:
 
-## Learn More
+### ❤️ Favourite Movies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The favourite movie slice handles:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Adding movies to favourites
+* Removing movies from favourites
+* Preventing duplicate favourite movies
+* Checking whether a movie is already favourited
 
-### Code Splitting
+### 👀 Recently Viewed Movies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The recently viewed slice handles:
 
-### Analyzing the Bundle Size
+* Adding viewed movies
+* Moving an already-viewed movie back to the top
+* Preventing duplicate movies
+* Keeping only the latest **8 movies**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Both states are persisted using **Local Storage**, so favourites and recently viewed movies remain available after refreshing the application.
 
-### Making a Progressive Web App
+## 🔌 API Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Movie Plus uses the **TMDB API** to retrieve movie information.
 
-### Advanced Configuration
+The basic data flow is:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```text
+User Action
+     ↓
+React Component
+     ↓
+Movie API Service
+     ↓
+TMDB API
+     ↓
+API Response
+     ↓
+Loading / Error / No Data / Movie Results
+```
 
-### Deployment
+API-related logic is separated into the `services` directory to keep API communication separate from UI components.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🧭 Routing
 
-### `npm run build` fails to minify
+The application uses **React Router** for client-side navigation.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```text
+/                  → Home
+/movies            → Movies
+/movie/:id         → Movie Details
+/search            → Search Movies
+/favourite         → Favourite Movies
+/*                 → 404 Not Found
+```
+
+Movie details use a dynamic route:
+
+```text
+/movie/:id
+```
+
+The movie ID is accessed using React Router's `useParams()` hook.
+
+## 📄 Pagination
+
+Pagination is implemented for both the Movies page and Search page.
+
+A reusable `Pagination` component handles:
+
+* Previous page
+* Next page
+* Current page
+* Disabled Previous button on the first page
+* Disabled Next button on the last page
+* Resetting the scroll position when changing pages
+
+## 🧩 Reusable Components
+
+The project follows a reusable component-based architecture.
+
+### MovieGrid
+
+`MovieGrid` is responsible for rendering a collection of movies using reusable `MovieCard` components.
+
+### MovieCard
+
+`MovieCard` displays:
+
+* Movie poster
+* Movie title
+* Rating
+* Release year
+* Favourite button
+
+### Pagination
+
+`Pagination` provides reusable pagination functionality for different pages.
+
+### Other Components
+
+* `Loader`
+* `ErrorMessage`
+* `NoData`
+
+This approach reduces repeated UI logic and makes the application easier to maintain.
+
+## 🎨 UI Design
+
+Movie Plus uses a **cinematic cyberpunk-inspired design**.
+
+### Color Palette
+
+```text
+Background:      #0D1117
+Card Background: #161B22
+Primary Accent:  #00F5FF
+Secondary Accent:#FF007F
+Primary Text:    #F0F6FC
+Muted Text:      #8B949E
+Borders:         #30363D
+```
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/imabdurehman/movie-app.git
+```
+
+### 2. Navigate to the project
+
+```bash
+cd movie-app
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Configure environment variables
+
+Create a `.env` file in the project root and add your TMDB API configuration.
+
+```env
+REACT_APP_TMDB_API_KEY=your_api_key
+```
+
+### 5. Start the development server
+
+```bash
+npm start
+```
+
+The application will start on the local development server provided by Create React App.
+
+## 📚 What I Learned
+
+This project helped strengthen my practical understanding of:
+
+* React component architecture
+* React Hooks
+* React Router
+* REST API integration
+* Async/Await
+* Loading and error handling
+* Pagination
+* Redux Toolkit
+* Global state management
+* `useSelector` and `useDispatch`
+* Local Storage persistence
+* Reusable components
+* CSS Modules
+* Responsive UI development
+* Git and GitHub workflow
+* Vercel deployment
+
+---
+
+## Author
+
+**Abdulrehman Siddiqi**
+
+**GitHub:** https://github.com/imabdurehman
+
+**LinkedIn:** https://www.linkedin.com/in/imabdurehman
