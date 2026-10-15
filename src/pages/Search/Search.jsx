@@ -108,7 +108,7 @@ const Search = () => {
 
       {noDataMessage && <NoData message={noDataMessage} />}
 
-      {!loader && <MovieGrid movies={searchResult} />}
+      {!loader && !errorMessage && <MovieGrid movies={searchResult} />}
 
       {searchResult.length > 0 && (
         <Pagination
