@@ -43,9 +43,9 @@ const Movies = () => {
 
       {loader && <Loader />}
 
-      {!loader && <MovieGrid movies={movies} />}
+      {!loader && !errorMessage && <MovieGrid movies={movies} />}
 
-      {movies.length > 0 && (
+      {!loader && !errorMessage && movies.length > 0 && (
         <Pagination
           currentPage={moviePage}
           totalPages={totalPages}
