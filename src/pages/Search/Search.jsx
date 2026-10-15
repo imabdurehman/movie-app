@@ -110,7 +110,7 @@ const Search = () => {
 
       {!loader && !errorMessage && <MovieGrid movies={searchResult} />}
 
-      {searchResult.length > 0 && (
+      {!loader && !errorMessage && searchResult.length > 0 && (
         <Pagination
           currentPage={searchPage}
           totalPages={totalPages}
